@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
 
 
-    <meta charset="utf-8">
-    <title>TABLE</title>
-    <link  href='/stylesheets/style.css' rel='stylesheet'/>
-<!-- <link rel="stylesheet" href="/public/stylesheets/style.css"> -->
+  <meta charset="utf-8">
+  <title>TABLE</title>
+  <link href='/stylesheets/style.css' rel='stylesheet' />
+  <!-- <link rel="stylesheet" href="/public/stylesheets/style.css"> -->
 
-    </script>
-  </head>
+  </script>
+</head>
 
-  <body>
-    <form class="">
+<body>
+  <form class="">
 
-      <table border="" id="tab" class="tabl"></tr>
+    <table border="" id="tab" class="tabl">
+      </tr>
       <caption>成绩统计</caption>
       <thead>
         <tr>
@@ -23,43 +24,47 @@
           <th data-order="or" data-id="chi">Chinese</th>
           <th data-order="de" data-id="mat">Math</th>
           <th data-order="or" data-id="eng">English</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
 
         <%for(var i = 0; i < scores.length; i++) {%>
-      <tr id="tr<%= i%>">
+          <tr id="tr<%= i%>">
 
-        <td>
-          <%= scores[i].name%>
-        </td>
-        <td>
-          <%= scores[i].chinese %>
-        </td>
-        <td>
-          <%= scores[i].math%>
-        </td>
-        <td>
-          <%= scores[i].english%>
-        </td>
-        <td>
-          <button type="button" name="button" class="delete" id="del">删除</button>
-        </td>
+            <td>
+              <%= scores[i].name%>
+            </td>
+            <td>
+              <%= scores[i].chinese %>
+            </td>
+            <td>
+              <%= scores[i].math%>
+            </td>
+            <td>
+              <%= scores[i].english%>
+            </td>
+            <td>
+              <button type="button" name="button" class="delete" id="del">删除</button>
+            </td>
 
-      </tr>
-      <%}%>
+          </tr>
+          <%}%>
+          <br>
+            <tr>
+              <input type="button" value="增加" class="add">
+            </tr>
       </tbody>
     </table>
-    <input type="button" value="增加" class="butt">
 
   </form>
   <script language="javascript" src="./javascripts/jquery-2.1.4.js" type="text/javascript"></script>
-    <script src="jquery/dist/jquery.min.js" ></script>
+  <script src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/javascripts/sort.js"></script>
   <script type="text/javascript" src="../sql.js"></script>
 
 
   <script src="" type="text/javascript">
-</body>
+    < /body>
 
-</html>
+    < /html>
