@@ -19,40 +19,34 @@
       </tr>
       <caption>成绩统计</caption>
       <thead>
-        <tr>
+
           <th>name</th>
           <th data-order="or" data-id="chi">Chinese</th>
           <th data-order="de" data-id="mat">Math</th>
           <th data-order="or" data-id="eng">English</th>
           <th></th>
-        </tr>
+
       </thead>
       <tbody>
 
         <%for(var i = 0; i < scores.length; i++) {%>
-          <tr id="tr<%= i%>">
+          <tr>
 
-            <td>
-              <%= scores[i].name%>
-            </td>
-            <td>
-              <%= scores[i].chinese %>
-            </td>
-            <td>
-              <%= scores[i].math%>
-            </td>
-            <td>
-              <%= scores[i].english%>
-            </td>
+            <td  data-id="<%= scores[i].student_id%>"><%= scores[i].name%></td>
+            <td><%= scores[i].chinese %></td>
+            <td><%= scores[i].math%></td>
+            <td><%= scores[i].english%></td>
             <td>
               <button type="button" name="button" class="delete" id="del">删除</button>
             </td>
+            <!-- <td><button type="button" name="button" class="update" id="upd">修改</button></td> -->
 
           </tr>
           <%}%>
-          <br>
             <tr>
-              <input type="button" value="增加" class="add">
+              <button type="button" name="button" class="add" id="adad">增加</button>
+
+              <!-- <input type="button" value="增加" class="add"> -->
             </tr>
       </tbody>
     </table>
