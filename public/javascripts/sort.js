@@ -74,63 +74,58 @@ $(function() {
 
 
   $('.tabl').on('click', '.delete', function() {
-    var k = 0;
-    var a = $(this).closest('tr').find('td').eq(0).text();
+    var nameDeleted = $(this).closest('tr').find('td').eq(0).text().trim();
+    var sid = $(this).closest('tr').find('td').eq(0).data('id');
+    // alert()
     $('tbody tr').each(function(i, n) {
       var sc = $("td", this);
-      var aa = $("td", this).eq(0).text();
+      var name = $("td", this).eq(0).text().trim();
+      var id = $("td",this).eq(0).data('id');
       var person;
       var chinese;
       var math;
       var english;
-      if (aa === a) {
-        alert("删除？");
-        person = sc.eq(0).text("");
-        chinese = sc.eq(1).text("");
-        math = sc.eq(2).text("");
-        english = sc.eq(3).text("");
-        deleted = sc.eq(4).text("");
-        $.get("/del", {
-          nm: a
-        }, function(req) {
-          alert('sort');
-        });
+      if (id === sid) {
+        alert("删除？" + sid);
+        $(this).remove();
+        // $.ajax({
+        //   url:'/del',
+        //   data:sid,
+        //   type:'delete',
+        //   sucess:function() {}
+        // });
 
+        $.get("/del", {
+          id: sid
+        }, function(req) {
+
+        });
       }
-      // else {
-      //     person = sc.eq(0).text();
-      //     chinese = sc.eq(1).text();
-      //     math = sc.eq(2).text();
-      //     english = sc.eq(3).text();
-      //     alls.push({
-      //       name: person,
-      //       chinese: chinese,
-      //       math: math,
-      //       english: english
-      //
-      //     });
-      // }
 
     });
     // alert(alls);
   });
-});
-$('.add').on('click', function() {
-  alert('wer');
-  var addn = prompt("name=?");
-  var addc = prompt("chines=?");
-  var addm = prompt("math=?");
-  var adde = prompt("english=?");
-  var newRow = "<tr><td>" + addn + "</td><td>" + addc + "</td><td>" + addm + "</td><td>" + adde + "</td>" + " <td><button type='button' name='button' class='delete' id='del'>删除</button></td><tr>";
-  $("tbody").append(newRow);
-});
-$('.tabl').on('click', '.add', function() {
-  alert('123');
 
-  // $('.butt').on('click',function() {
-  //   var a = $('#tab tr:last');
-  //   var appe = "<tr><td>name</td><td>chinese</td><td>math</td><td>english</td></tr>";
-  //
-  //   alert('123');
-  // });
+  $('.add').on('click', function() {
+    var addn = prompt("name=?");
+    var addc = prompt("chines=?");
+    var addm = prompt("math=?");
+    var adde = prompt("english=?");
+    var newRow = "<tr><td>" + addn + "</td><td>" + addc + "</td><td>" + addm + "</td><td>" + adde + "</td>" + " <td><button type='button' name='button' class='delete' id='del'>删除</button></td><tr>";
+    $("tbody").append(newRow);
+    var add = {
+      name: addn,
+      chinese: parseInt(addc),
+      math: parseInt(addm),
+      english: parseInt(adde)
+    };
+    $.get("/add", {
+      added: add
+    }, function(req) {
+      // alert('sort');
+    });
+  });
+
+
+
 });
