@@ -1,13 +1,13 @@
 var Process = require('../model/data.js');
 var mysql = require('mysql');
-
+var change = require('../model/change.js');
 function Controller() {
 
 }
 
 
 
-Controller.prototype.getManage = function(req, res) {
+Controller.prototype.getManage = function(req, res,next) {
   var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
@@ -17,22 +17,22 @@ Controller.prototype.getManage = function(req, res) {
   });
   connection.connect();
   // var insert = 'insert into basic values("demo1",67,87,56)';
-  var select = 'select * from basic';
-  var deleteS = "delete from basic where name = 'sunny'";
+  var select = "select a.student_id,b.student_name,c.subject_name,a.score"+
+  " from scores a,students b,subjects c"+
+  " where a.student_id = b.student_id and a.subject_id = c.subject_id;";
+  // var select = 'select * from basic';
   connection.query(select, function(err, results) {
     if (err) {
       throw err;
     } else {
-      datas = results;
-      console.log(datas);
+      datas = change.change(results);
+      // console.log(datas);
+      // datas = results;
     }
+    res.render('index', {
+      scores: datas
+    });
+    connection.end();
   });
-
-  // var proce = new Process();
-  // var datas = proce.process();
-  res.render('index', {
-    scores: datas
-  });
-  connection.end();
 };
 module.exports = Controller;
